@@ -1,0 +1,414 @@
+<html>
+  <head>
+     <title>DHF</title>
+  </head>
+  <body>
+  <p>
+    Ethereum-based holidays fund contract, running on localhost 9545. 
+  </p>
+  <div id="meta-mask-required"></div>
+  <fieldset>
+      <label> Your agency address:
+      <input type="text" id="address"></input>
+    </label><br/>
+    <label> Your goal in ether:
+      <input type="text" id="goal"></input>
+    </label><br/>
+    <label> Your destination:
+      <input type="text" id="destination"></input>
+    </label><br/>
+    <label> An inspirational image for your travel:
+    <input type="file" id="upload"/> 
+    </label><br/>
+
+    <button onclick="createTravel()">CREATE TRAVEL</button>
+    <div id="response_creation"></div>
+    </div>
+  </fieldset>
+    <fieldset>
+      <label> Your travel ID:
+      <input type="text" id="fund_id"></input>
+    </label><br/>
+    <label> Your deposit in ether:
+      <input type="text" id="deposit"></input>
+    </label><br/>
+    <button onclick="fundTravel()">FUND TRAVEL</button>
+    </div>
+  </fieldset>
+
+  <fieldset>
+      <label> Your travel ID:
+      <input type="text" id="show_id"></input>
+    </label><br/>
+    <button onclick="showTravel()">SHOW TRAVEL</button>
+    <div id="response_agency"></div>
+    <div id="response_goal"></div>
+    <div id="response_balance"></div>
+    <div id="response_destination"></div>
+    <div id="response_owner"></div>
+    <div id="response_closed"></div>
+    <img id="response_image"/>
+
+    </div>
+  </fieldset>
+  <script src="https://wzrd.in/standalone/buffer"></script>
+  <script src="https://unpkg.com/ipfs-api/dist/index.js"></script>
+  <script>
+    //var ipfs = window.IpfsApi('https.//ipfs.infura.io', '5001');
+    //var Buffy = window.IpfsApi().Buffer
+    const abi = [
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "abortTravel",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "distructor",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelBalance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelDestination",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelOwner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelAgency",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "deposit",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelGoal",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "deployer",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelIsClosed",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_agency",
+        "type": "address"
+      },
+      {
+        "name": "_goal",
+        "type": "uint256"
+      },
+      {
+        "name": "_destination",
+        "type": "string"
+      },
+      {
+        "name": "_img",
+        "type": "string"
+      }
+    ],
+    "name": "createTravel",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "travelId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTravelImage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  }
+]
+    const ipfs = window.IpfsApi('localhost', 5002, {protocol: 'http'});
+    const address = '0x345ca3e014aaf5dca488057592ee47305d9b3e10';
+    var instance = web3.eth.contract(abi);
+    var holidays = instance.at('0x345ca3e014aaf5dca488057592ee47305d9b3e10');
+    // MetaMask injects the web3 library for us.
+    window.onload = function() {
+      if (typeof web3 === 'undefined') {
+        document.getElementById('meta-mask-required').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this example'
+      }
+    }
+
+    function fundTravel() {
+      	holidays.deposit.sendTransaction(document.getElementById('fund_id').value, {
+        from:web3.eth.coinbase,
+        value:web3.toWei(document.getElementById('deposit').value, "ether"),
+        gas: 6654755,
+        gasPrice: 40
+      }, function(error, result) {
+        if (!error) {
+          console.log(result);
+        } else {
+          console.log(error);
+        }
+      });
+    }
+
+    function createTravel() {
+      var url = '';
+      const reader = new FileReader();
+      const photo = document.getElementById("upload");
+
+      reader.readAsArrayBuffer(photo.files[0]);   
+      reader.onloadend = function() {
+        //const ipfs = window.IpfsApi('ipfs.infura.io', 5001, {protocol: 'https'}) // Connect to IPFS
+         // Connect to IPFS
+        const buf = buffer.Buffer(reader.result)
+        console.log(buf); // Convert data into buffer
+        ipfs.files.add(buf, function(err, result) { // Upload buffer to IPFS
+          if(err) {
+            console.error(err)
+            return
+          }
+          //url = `https://ipfs.io/ipfs/${result[0].hash}`
+          url = result[0].hash
+          console.log(`Url --> ${url}`)
+          holidays.createTravel(document.getElementById('address').value, web3.toWei(document.getElementById('goal').value, "ether"), document.getElementById('destination').value, url, function(error, result) {
+          if (!error) {
+          console.log(result);
+          document.getElementById('response_creation').innerHTML = 'EVERYTHING OK, your travel ID: ' + result;
+          } else {
+              console.log(error);
+            }
+          });
+        })
+      }
+    }
+
+    function showTravel() {
+      holidays.getTravelAgency(document.getElementById('show_id').value, function(error, result) {
+        if (!error) {
+          document.getElementById('response_agency').innerHTML = 'Travel agency address: ' + result;
+        } else {
+          console.log(error);
+        }
+      });
+
+      holidays.getTravelGoal(document.getElementById('show_id').value, function(error, result) {
+        if (!error) {
+          document.getElementById('response_goal').innerHTML = 'Travel goal: ' + web3.fromWei(result, 'ether') + ' ether';
+        } else {
+          console.log(error);
+        }
+      });
+
+      holidays.getTravelOwner(document.getElementById('show_id').value, function(error, result) {
+        if (!error) {
+          document.getElementById('response_owner').innerHTML = 'Travel owner: ' + result;
+        } else {
+          console.log(error);
+        }
+      });
+
+      holidays.getTravelBalance(document.getElementById('show_id').value, function(error, result) {
+        if (!error) {
+          document.getElementById('response_balance').innerHTML = 'Travel balance: ' + web3.fromWei(result, 'ether') + ' ether';
+        } else {
+          console.log(error);
+        }
+      });
+
+      holidays.getTravelDestination(document.getElementById('show_id').value, function(error, result) {
+        if (!error) {
+          document.getElementById('response_destination').innerHTML = 'Travel destination: ' + result;
+        } else {
+          console.log(error);
+        }
+      });
+
+      holidays.getTravelIsClosed(document.getElementById('show_id').value, function(error, result) {
+        if (!error) {
+          document.getElementById('response_closed').innerHTML = 'Is closed?: ' + result;
+        } else {
+          console.log(error);
+        }
+      });
+
+      holidays.getTravelImage(document.getElementById('show_id').value, function(error, url) {
+        if (!error) {
+          ipfs.files.cat(url, function(err, img) { // Upload buffer to IPFS
+            if(err) {
+              console.log(err)
+            }
+            else {
+              var blob = new Blob([img], {type:"image/jpg"});
+              var img_url = window.URL.createObjectURL(blob);
+              document.getElementById('response_image').src = img_url;
+            }
+          });
+        } else {
+          console.log(error);
+        }
+      });
+
+    }
+
+  </script>
+  </body>
+</html>
