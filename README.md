@@ -1,2 +1,13 @@
-# stupid-escrow
-A simple ethereum-based escrow for travelling
+# AIR-FUNDING
+
+pure p2p hotness 
+
+### Prerequisites
+
+```
+ipfs
+truffle
+metamask
+
+```
+
