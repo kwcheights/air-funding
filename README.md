@@ -8,6 +8,5 @@ pure p2p hotness
 ipfs
 truffle
 metamask
-
 ```
 
