@@ -1,0 +1,7 @@
+/Build/
+/test/
+/node_modules/
+/src/
+/package-lock.json
+/truffle.js
+/truffle-config.js
