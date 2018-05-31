@@ -1,5 +1,5 @@
 //in teoria solodity crea automaticamente i getter delle var public, ma non i setter
-pragma solidity 0.4.24;
+pragma solidity 0.4.23;
 
 contract Airfunding{
 	address public deployer;
@@ -8,19 +8,20 @@ contract Airfunding{
 
 	struct travel {
 		string id; //L'indice è ridondante con l'array per comodità. Viene ottenuto lato JS con sh3 della concat. di destinazione, transazione e owner 
+		string title;
 		uint inArrayIndex;
 		address owner;
 		uint goal;
 		uint balance;
-		bool closed;
 
 		address[] contributors;
 		mapping(address => uint) travelDeposits;
-		string img;
 		string destination;
 		string description;
 		uint startDate; 
-		uint expirationDate; 
+		uint expirationDate;
+		string img;
+		bool closed;
 	}
 
 	constructor() public {
@@ -54,7 +55,7 @@ contract Airfunding{
 
 
 	//INTERACTIONS ----------------------------------------------------------------------------------------------------------------
-	function createTravel(string _id, address _owner, uint _goal, string _destination, uint _start, uint _expiration, string _img) public {
+	function createTravel(string _id, string title, address _owner, uint _goal, string _destination, string _description, uint _start, uint _expiration, string _img) public {
 		travelIds.push(_id);
 		//string memory _id = keccak256(block.number, msg.sender);
 		travels[_id].id = _id;
@@ -67,6 +68,7 @@ contract Airfunding{
 		travels[_id].destination = _destination;
 		travels[_id].startDate = _start;
 		travels[_id].expirationDate = _expiration;
+		travels[_id].description = _description;
 	}
    
 	function abortTravel(string travelId) public { //HIGH COST
