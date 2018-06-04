@@ -79,6 +79,18 @@ contract Airfunding{
 		}
 	}
 
+	function getNumberOfTravels() public view returns(uint) {
+		return travelIds.length;
+	}
+
+	function getTravelId(uint index) public view returns(string) {
+		return travelIds[index];
+	}
+
+	function getTravelTitle(string travelId) public view returns(string) {
+		return travels[travelId].title;
+	}
+
 	function getTravelOwner(string travelId) public view returns(address) {
 		return travels[travelId].owner;
 	}
@@ -101,6 +113,14 @@ contract Airfunding{
 
 	function getTravelDestination(string travelId) public view returns(string) {
 		return travels[travelId].destination;
+	}
+
+	function getTravelDescription(string travelId) public view returns(string) {
+		return travels[travelId].description;
+	}
+
+	function getNumberOfContributors(string travelId) public view returns(uint) {
+		return travels[travelId].contributors.length;
 	}
 
 
