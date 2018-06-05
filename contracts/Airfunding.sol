@@ -44,18 +44,18 @@ contract Airfunding{
 			travels[travelId].balance -= travels[travelId].goal;
 			travels[travelId].travelDeposits[msg.sender] -= travels[travelId].balance;
 			msg.sender.transfer(travels[travelId].balance);
-			travels[travelId].balance = 0;
+			travels[travelId].balance = travels[travelId].goal;
 
 		} else if (travels[travelId].balance == travels[travelId].goal) {
 			travels[travelId].closed = true;
 			travels[travelId].owner.transfer(travels[travelId].goal);
-			travels[travelId].balance = 0;
+			travels[travelId].balance = travels[travelId].goal;
 		}
 	}
 
 
 	//INTERACTIONS ----------------------------------------------------------------------------------------------------------------
-	function createTravel(string _id, string title, address _owner, uint _goal, string _destination, string _description, uint _start, uint _expiration, string _img) public {
+	function createTravel(string _id, string _title, address _owner, uint _goal, string _destination, string _description, uint _start, uint _expiration, string _img) public {
 		travelIds.push(_id);
 		//string memory _id = keccak256(block.number, msg.sender);
 		travels[_id].id = _id;
@@ -69,10 +69,12 @@ contract Airfunding{
 		travels[_id].startDate = _start;
 		travels[_id].expirationDate = _expiration;
 		travels[_id].description = _description;
+		travels[_id].title = _title;
 	}
    
 	function abortTravel(string travelId) public { //HIGH COST
-		require(travels[travelId].owner!=0); //provvisorio
+		require(travels[travelId].owner==msg.sender);
+		require(!travels[travelId].closed); //provvisorio
 		travels[travelId].closed = true;
 		for (uint i=0; i<travels[travelId].contributors.length; i++) {
 			travels[travelId].contributors[i].transfer(travels[travelId].travelDeposits[travels[travelId].contributors[i]]);
@@ -122,6 +124,19 @@ contract Airfunding{
 	function getNumberOfContributors(string travelId) public view returns(uint) {
 		return travels[travelId].contributors.length;
 	}
+
+	function getTravelExpirationDate(string travelId) public view returns(uint) {
+		return travels[travelId].expirationDate;
+	}
+
+	function getTravelStartDate(string travelId) public view returns(uint) {
+		return travels[travelId].startDate;
+	}
+
+	function getTravelInArrayIndex(string travelId) public view returns(uint) {
+		return travels[travelId].inArrayIndex;
+	}
+
 
 
 	//UTILS -------------------------------------------------------------------------------------------------------------------------
