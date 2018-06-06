@@ -38,19 +38,22 @@ function renderTravels() {
 }
 
 function fundTravel(travelId, amount) {
-        air.deposit.sendTransaction(travelId, {
-        from:web3.eth.coinbase,
-        value:web3.toWei(amount, "ether"),
-        gas: 6654755,
-        gasPrice: 40
-      }, function(error, result) {
-        if (!error) {
-          console.log(result);
-        } else {
-          console.log(error);
-        }
-      });
-    }
+  return new Promise(resolve=>{
+    air.deposit.sendTransaction(travelId, {
+      from:web3.eth.coinbase,
+      value:web3.toWei(amount, "ether"),
+      gas: 6654755,
+      gasPrice: 40
+    }, function(error, result) {
+      if (!error) {
+        console.log(result);
+        resolve(result)
+      } else {
+        console.log(error);
+      }
+    });
+  });
+}
 
 function abortTravel(travelId) {
         air.abortTravel(travelId, function(error, result) {
@@ -257,4 +260,3 @@ async function getTravelList() {
   };
   return travelList;
 }
-
