@@ -93,44 +93,34 @@ function renderTravel(data) {
   
 }
 
-function createTravel() {
-  var url = '';
-  const reader = new FileReader();
-  const photo = document.getElementById("img");
-  var travelId = sha3_256(document.getElementById('dest').value + web3.eth.coinbase);
-
-  reader.readAsArrayBuffer(photo.files[0]);   
-  reader.onloadend = function() {
-        //const ipfs = window.IpfsApi('ipfs.infura.io', 5001, {protocol: 'https'}) // Connect to IPFS
-         // Connect to IPFS
-         const buf = buffer.Buffer(reader.result)
-        console.log(buf); // Convert data into buffer
-        ipfs.files.add(buf, function(err, result) { // Upload buffer to IPFS
-          if(err) {
-            console.error(err)
-            return
-          }
-          //url = `https://ipfs.io/ipfs/${result[0].hash}`
+function storeTravel(_id, _title, _goal, _dest, _desc, _exp, _img) {
+  return new Promise(resolve=>{
+    var url = '';
+    const reader = new FileReader();
+    const photo = _img;
+    reader.readAsArrayBuffer(photo.files[0]);   
+    reader.onloadend = function() {
+      const buf = buffer.Buffer(reader.result)
+      console.log(buf); 
+      ipfs.files.add(buf, function(err, result) { 
+        if(err) {
+          console.error(err)
+        } else {
           url = result[0].hash
           console.log(`Url --> ${url}`)
-          air.createTravel(travelId, 
-            document.getElementById('title').value, 
-            web3.eth.coinbase, 
-            web3.toWei(document.getElementById('goal').value, "ether"), 
-            document.getElementById('dest').value, 
-            document.getElementById('desc').value,
-            Date.now(),
-            document.getElementById('exp').value,
-            url, function(error, result) {
-              if (!error) {
-                console.log(result);
-              } else {
-                console.log(error);
-              }
-            });
-        })
-      }
+          air.createTravel(_id, _title, web3.eth.coinbase, _goal, _dest, _desc,Date.now(),_exp,url, function(error, result) {
+            if (!error) {
+              console.log(result)
+              resolve(result);
+            } else {
+              console.log(error);
+            }
+          });
+        }
+      });
     }
+  });
+}
 
 // ---
 // ---
@@ -267,38 +257,4 @@ async function getTravelList() {
   };
   return travelList;
 }
-  
-function renderTravelList(travelList){
-  var status;
-  for(let t=0; t<travelList.length; t++){
-    if(!travelList[t].closed){
-      status='OPEN'
-    } else{
-      status='CLOSED'
-    }
-    $('.list-group').prepend(
-      `<a href="#" class="list-group-item" id="travelexample" id="travel`+travelList[t].InArrayIndex+`">
-                <div class="media col-md-3">
-                    <figure class="pull-left">
-                        <img class="media-object img-rounded img-responsive"  src="`+"https://media-cdn.tripadvisor.com/media/photo-s/06/5b/f4/fb/view-from-the-top.jpg"+/*+travelList[t].img+*/`" heigth="250" width="350">
-                    </figure>
-                </div>
-                <div class="col-md-6">
-                    <h4 class="list-group-item-heading">`+travelList[t].title+`</h4>
-                    <p class="list-group-item-text"> `+travelList[t].description+` </p>
-                    <div class="stars">
-                      <p>Status: <small><b>`+status+`</b></small> with <b>`+travelList[t].numberOfContributors+`</b> contributors</p>
-                    </div>  
-                </div>
-                <div class="col-md-3 text-center">
-                    <h2> `+web3.fromWei(travelList[t].balance,'ether')+` / `+web3.fromWei(travelList[t].goal,'ether')+`<small> ether </small></h2>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Fund now!</button>
-                    <button type="button" class="btn btn-danger btn-lg btn-block">Close</button>
-                    <div class="stars">
-                      <p> Expiration <small> : </small> `+travelList[t].expiration+` </p>  
-                    </div>   
-                </div>
-          </a>`
-    );
-  }
-}
+
