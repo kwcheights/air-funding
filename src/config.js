@@ -401,3 +401,9 @@ web3.eth.getTransactionReceiptMined= function getTransactionReceiptMined(txHash,
     }
 };
 
+web3.eth.filter('latest', function(error, result){
+  if (!error) {
+    console.log(result);
+    getTravelList().then(list => renderTravelList(list))
+  }
+});

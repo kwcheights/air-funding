@@ -1,4 +1,4 @@
-function renderTravels() {
+/*function renderTravels() {
   for (var i = 0; i<travelsData.length; i++){
     let data = travelsData[i];
     console.log(data);
@@ -35,7 +35,37 @@ function renderTravels() {
     resolve(true);
     reject(false);
   })
-}
+}*/
+
+/*function renderTravel(data) {
+    console.log(data);
+    $('.list-group').prepend(
+        `<a id=`+data.img+` href='#' class='list-group-item'>
+        <div class='media col-md-3'>
+        <figure class='pull-left'>
+        <img class='media-object img-rounded img-responsive' src='http://placehold.it/350x250' alt='placehold.it/350x250' >
+        </figure>
+        </div>
+        <div class='col-md-6'>
+        <h4 class='list-group-item-heading'>` + data.title +`</h4>
+        <p class='list-group-item-text'>` + data.description +  `/p>
+        </div>
+        <div class='col-md-3 text-center'>
+        <h2>` + data['numberOfContributors'] + `<small> contributors </small></h2>
+        <button type='button' class='btn btn-primary btn-lg btn-block'>Fund Now!</button>
+        <div class='stars'>
+        <span class='glyphicon glyphicon-star'></span>
+        <span class='glyphicon glyphicon-star'></span>
+        <span class='glyphicon glyphicon-star'></span>
+        <span class='glyphicon glyphicon-star'></span>
+        <span class='glyphicon glyphicon-star-empty'></span>
+        </div>
+        <p>` + data.balance + `<small> / </small>` + data.goal + ` Ether reached</p>
+        </div>
+        </a>`
+        );
+  
+}*/
 
 function fundTravel(travelId, amount) {
   return new Promise(resolve=>{
@@ -64,36 +94,6 @@ function abortTravel(travelId) {
               alert("This travel is closed and/or you're not the owner")
             }
           });
-}
-
-function renderTravel(data) {
-    console.log(data);
-    $('.list-group').prepend(
-        `<a id=`+data.img+` href='#' class='list-group-item'>
-        <div class='media col-md-3'>
-        <figure class='pull-left'>
-        <img class='media-object img-rounded img-responsive' src='http://placehold.it/350x250' alt='placehold.it/350x250' >
-        </figure>
-        </div>
-        <div class='col-md-6'>
-        <h4 class='list-group-item-heading'>` + data.title +`</h4>
-        <p class='list-group-item-text'>` + data.description +  `/p>
-        </div>
-        <div class='col-md-3 text-center'>
-        <h2>` + data['numberOfContributors'] + `<small> contributors </small></h2>
-        <button type='button' class='btn btn-primary btn-lg btn-block'>Fund Now!</button>
-        <div class='stars'>
-        <span class='glyphicon glyphicon-star'></span>
-        <span class='glyphicon glyphicon-star'></span>
-        <span class='glyphicon glyphicon-star'></span>
-        <span class='glyphicon glyphicon-star'></span>
-        <span class='glyphicon glyphicon-star-empty'></span>
-        </div>
-        <p>` + data.balance + `<small> / </small>` + data.goal + ` Ether reached</p>
-        </div>
-        </a>`
-        );
-  
 }
 
 function storeTravel(_id, _title, _goal, _dest, _desc, _exp, _img) {
@@ -125,9 +125,6 @@ function storeTravel(_id, _title, _goal, _dest, _desc, _exp, _img) {
   });
 }
 
-// ---
-// ---
-// ---
 function getTravelById(travelId) {
   return new Promise( resolve =>{
      var travelData = {id:travelId};
