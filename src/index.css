@@ -4,6 +4,7 @@ a.list-group-item {
     height:auto;
     min-height:220px;
 }
+
 a.list-group-item.active small {
     color:#fff;
 }
@@ -11,6 +12,10 @@ a.list-group-item.active small {
     margin:20px auto 1px;    
 }
 
+.btn.btn-primary[disabled] {
+    background-color: #8e8e8e;
+    border-color: #8e8e8e;
+}
 /*************************************/
 
 
@@ -91,6 +96,14 @@ body {
 }
 
 input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type=date] {
   width: 100%;
   margin-bottom: 20px;
   padding: 12px;

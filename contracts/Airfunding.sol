@@ -18,8 +18,8 @@ contract Airfunding{
 		mapping(address => uint) travelDeposits;
 		string destination;
 		string description;
-		uint startDate; 
-		uint expirationDate;
+		string startDate; 
+		string expirationDate;
 		string img;
 		bool closed;
 	}
@@ -55,7 +55,7 @@ contract Airfunding{
 
 
 	//INTERACTIONS ----------------------------------------------------------------------------------------------------------------
-	function createTravel(string _id, string _title, address _owner, uint _goal, string _destination, string _description, uint _start, uint _expiration, string _img) public {
+	function createTravel(string _id, string _title, address _owner, uint _goal, string _destination, string _description, string _start, string _expiration, string _img) public {
 		travelIds.push(_id);
 		//string memory _id = keccak256(block.number, msg.sender);
 		travels[_id].id = _id;
@@ -125,11 +125,11 @@ contract Airfunding{
 		return travels[travelId].contributors.length;
 	}
 
-	function getTravelExpirationDate(string travelId) public view returns(uint) {
+	function getTravelExpirationDate(string travelId) public view returns(string) {
 		return travels[travelId].expirationDate;
 	}
 
-	function getTravelStartDate(string travelId) public view returns(uint) {
+	function getTravelStartDate(string travelId) public view returns(string) {
 		return travels[travelId].startDate;
 	}
 

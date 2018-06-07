@@ -68,7 +68,7 @@
 }*/
 
 function fundTravel(travelId, amount) {
-  return new Promise(resolve=>{
+  return new Promise((resolve,reject)=>{
     air.deposit.sendTransaction(travelId, {
       from:web3.eth.coinbase,
       value:web3.toWei(amount, "ether"),
@@ -79,7 +79,7 @@ function fundTravel(travelId, amount) {
         console.log(result);
         resolve(result)
       } else {
-        console.log(error);
+        reject(error)
       }
     });
   });
@@ -111,7 +111,7 @@ function storeTravel(_id, _title, _goal, _dest, _desc, _exp, _img) {
         } else {
           url = result[0].hash
           console.log(`Url --> ${url}`)
-          air.createTravel(_id, _title, web3.eth.coinbase, _goal, _dest, _desc,Date.now(),_exp,url, function(error, result) {
+          air.createTravel(_id, _title, web3.eth.coinbase, _goal, _dest, _desc,moment().format("D MMMM YYYY"),_exp,url, function(error, result) {
             if (!error) {
               console.log(result)
               resolve(result);
