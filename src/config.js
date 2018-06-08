@@ -377,7 +377,7 @@ var air = instance.at(address);
 
 web3.eth.filter('latest', function(error, result){
   if (!error) {
-    console.log(result);
+    console.log('> watched');
     getTravelList().then(list => renderTravelList(list))
   } else console.log(error);
 });

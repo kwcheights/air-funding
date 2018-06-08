@@ -76,7 +76,7 @@ function fundTravel(travelId, amount) {
       gasPrice: 40
     }, function(error, result) {
       if (!error) {
-        console.log(result);
+        console.log('> funded');
         resolve(result)
       } else {
         reject(error)
@@ -90,8 +90,7 @@ function abortTravel(travelId) {
           if (!error) {
           alert('Fund closed, travel aborted')
           } else {
-              console.log(error);
-              alert("This travel is closed and/or you're not the owner")
+              console.log('> abort rejected/failed');
             }
           });
 }
@@ -107,16 +106,16 @@ function storeTravel(_id, _title, _goal, _dest, _desc, _exp, _img) {
       console.log(buf); 
       ipfs.files.add(buf, function(err, result) { 
         if(err) {
-          console.error(err)
+          console.error('> ipfs storing error')
         } else {
           url = result[0].hash
-          console.log(`Url --> ${url}`)
+          //console.log(`Url --> ${url}`)
           air.createTravel(_id, _title, web3.eth.coinbase, _goal, _dest, _desc,moment().format("D MMMM YYYY"),_exp,url, function(error, result) {
             if (!error) {
-              console.log(result)
+              console.log('> travel created')
               resolve(result);
             } else {
-              console.log(error);
+              console.log('> creating failed');
             }
           });
         }

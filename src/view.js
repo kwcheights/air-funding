@@ -31,7 +31,6 @@ function renderTravelList(travelList){
   var closeButton;
   var fundButton;
   var contWord;
-  console.log('render: '+travelList[0].InArrayIndex)
   $('.list-group').html('');
   for(let t=0; t<travelList.length; t++){
 
@@ -39,7 +38,7 @@ function renderTravelList(travelList){
       if(!travelList[t].closed) {
         closeButton = `<button type="button" class="btn btn-danger btn-lg btn-block" id="abort`+travelList[t].InArrayIndex+`">Close</button>`;
         fundButton = `<button type="button" class="btn btn-primary btn-lg btn-block" id="fund`+travelList[t].InArrayIndex+`">Fund now!</button>`;
-        expires = `<p> Expires on <b> `+moment(travelList[t].expiration).format("D MMMM YYYY")+`</b></p>`
+        expires = `<p> Expires on <b> `+travelList[t].expiration+`</b></p>`
       } else {
         closeButton = `<button type="button" class="btn btn-danger btn-lg btn-block" id="abort`+travelList[t].InArrayIndex+`" disabled>Close</button>`
         fundButton = `<button type="button" class="btn btn-primary btn-lg btn-block" id="fund`+travelList[t].InArrayIndex+`" disabled>Fund now!</button>`
@@ -49,7 +48,7 @@ function renderTravelList(travelList){
       closeButton =``;
       if(!travelList[t].closed){
         fundButton = `<button type="button" class="btn btn-primary btn-lg btn-block" id="fund`+travelList[t].InArrayIndex+`">Fund now!</button>`    
-        expires = `<p> Expires on <b> `+moment(travelList[t].expiration).format("D MMMM YYYY")+`</b></p>`
+        expires = `<p> Expires on <b> `+travelList[t].expiration+`</b></p>`
       } else {
         fundButton = `<button type="button" class="btn btn-primary btn-lg btn-block" id="fund`+travelList[t].InArrayIndex+`" disabled>Fund now!</button>`
         expires = `<p><b>Closed</b></p>`
@@ -60,11 +59,8 @@ function renderTravelList(travelList){
       contWord = 'contributors';
     } else {contWord='contributor'}
 
-    
-
-
     $('.list-group').prepend(
-      `<a href="#" class="list-group-item" id="travelexample" id="travel`+travelList[t].InArrayIndex+`">
+      `<a href="#" class="list-group-item" id="travel`+travelList[t].InArrayIndex+`">
                 <div class="media col-md-3">
                     <figure class="pull-left">
                         <img class="media-object img-rounded img-responsive" src="`+/*"https://media-cdn.tripadvisor.com/media/photo-s/06/5b/f4/fb/view-from-the-top.jpg"+*/travelList[t].img+`" heigth="250" width="350">
@@ -95,11 +91,7 @@ function renderTravelList(travelList){
     abortTravel(travelList[t].id);
     });
   }
-}
-
-function checkOwner(travel) {
-  if(web.eth.coinbase==travel.owner) return true;
-  else return false;
+  console.log('> rendered')
 }
 
 //UTIL
