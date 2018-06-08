@@ -5,7 +5,6 @@
     <link href="index.css" rel="stylesheet" id="index-css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script src="//cdnjs.cloudflare.com/ajax/libs/js-sha3/0.7.0/sha3.min.js"></script>
     <script src="//unpkg.com/ipfs-api/dist/index.js"></script>
@@ -19,99 +18,99 @@
   </head>
   <body>
     <div class="page">
-    <header id="banner" role="banner">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <a class="navbar-brand" href="index.html">airfunding</a>
-          <h4 id="subtitle" class="text-center">decentralized funding platform</h4> 
+      <header id="banner" role="banner">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <a class="navbar-brand" href="index.html">airfunding</a>
+              <h4 id="subtitle" class="text-center">decentralized funding platform</h4> 
+            </div>
+          </div>
+        </div>
+      </header>
+      <br/>
+      <br/>
+
+      <div id="createModal" class="modal">
+        <div class="modal-content animate">
+          <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('createModal').style.display='none'">&times;</button>
+          <div class="container-modal">
+            <h4 class="text-center">STORE YOUR FUND ON THE BLOCKCHAIN</h4>
+          </div>
+          <div class="container-modal">
+            <label for="title"><i class="fa fa-bullhorn"></i> Title</label>
+            <input type="text" id="title" name="title" placeholder="Insert a title for your travel">
+            <label for="goal"><i class="fa fa-flag-checkered"></i> Goal</label>
+            <input type="text" id="goal" name="goal" placeholder="Define a goal in ether">
+            <label for="dest"><i class="fa fa-plane"></i> Destination</label>
+            <input type="text" id="dest" name="dest" placeholder="Choose a destination">
+            <label for="exp"><i class="fas fa-calendar-alt"></i> Expiration</label>
+            <input type="date" id="exp" name="exp" placeholder="Set an expiration date for your fund">
+            <label for="desc"><i class="fas fa-pencil-alt"></i> Description</label>
+            <input type="textarea" id="desc" name="desc" placeholder="Write something about your plan">
+            <label for="mail"><i class="fas fa-at"></i> Email</label>
+            <input type="text" id="mail" name="mail" placeholder="Your email here">
+            <label for="img"><i class="fa fa-image"></i> Image</label>
+            <input type="file" id="img" name="img" placeholder="Your email here">
+          </div>
+          <div class="container-modal">
+            <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="create_btn">Create!</button>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-    <br/>
-    <br/>
 
-    <div id="createModal" class="modal">
-      <div class="modal-content animate">
-        <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('createModal').style.display='none'">&times;</button>
-        <div class="container-modal">
-          <h4 class="text-center">STORE YOUR FUND ON THE BLOCKCHAIN</h4>
-        </div>
-        <div class="container-modal">
-          <label for="title"><i class="fa fa-bullhorn"></i> Title</label>
-          <input type="text" id="title" name="title" placeholder="Insert a title for your travel">
-          <label for="goal"><i class="fa fa-flag-checkered"></i> Goal</label>
-          <input type="text" id="goal" name="goal" placeholder="Define a goal in ether">
-          <label for="dest"><i class="fa fa-plane"></i> Destination</label>
-          <input type="text" id="dest" name="dest" placeholder="Choose a destination">
-          <label for="exp"><i class="fas fa-calendar-alt"></i> Expiration</label>
-          <input type="date" id="exp" name="exp" placeholder="Set an expiration date for your fund">
-          <label for="desc"><i class="fas fa-pencil-alt"></i> Description</label>
-          <input type="text" id="desc" name="desc" placeholder="Write something about your plan">
-          <label for="mail"><i class="fas fa-at"></i> Email</label>
-          <input type="text" id="mail" name="mail" placeholder="Your email here">
-          <label for="img"><i class="fa fa-image"></i> Image</label>
-          <input type="file" id="img" name="img" placeholder="Your email here">
-        </div>
-        <div class="container-modal">
-          <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="create_btn">Create!</button>
+      <div id="fundModal" class="modal">
+        <div class="modal-content animate">
+          <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('fundModal').style.display='none'">&times;</button>
+          <div class="container-modal">       
+            <h4 class="text-center">DON'T BE STINGY!</h4>
+          </div>
+          <div class="container-modal">
+            <label for="fundAmount"><i class="fab fa-ethereum"></i> Amount</label>
+            <input type="text" id="fundAmount" name="fundAmount" placeholder="Insert your amount in Ether">
+          </div>
+          <div class="container-modal">
+            <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="send_btn">Send</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="fundModal" class="modal">
-      <div class="modal-content animate">
-        <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('fundModal').style.display='none'">&times;</button>
-        <div class="container-modal">       
-          <h4 class="text-center">DON'T BE STINGY!</h4>
-        </div>
-        <div class="container-modal">
-          <label for="fundAmount"><i class="fab fa-ethereum"></i> Amount</label>
-          <input type="text" id="fundAmount" name="fundAmount" placeholder="Insert your amount in Ether">
-        </div>
-        <div class="container-modal">
-          <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="send_btn">Send</button>
-        </div>
-      </div>
-    </div>
+      <div class="container">
+        <div> 
+          <div> 
+            <div class="col-md-12">
+              <a href="#" class="fh5co-menu-btn js-fh5co-menu-btn" id="openCreateModal" onclick="document.getElementById('createModal').style.display='block'">create travel <i class="fas fa-plus-square"></i></a>    
+            </div>
+            <div class="list-group">
 
-    <div class="container">
-      <div> <!--class="row"-->
-        <div> <!--class="well"-->
-          <div class="col-md-12">
-          <a href="#" class="fh5co-menu-btn js-fh5co-menu-btn" id="openCreateModal" onclick="document.getElementById('createModal').style.display='block'">create travel <i class="fas fa-plus-square"></i></a>    
-        </div>
-              <!--button id="openCreateModal" type="button" class="btn btn-primary btn-lg btn-block" onclick="document.getElementById('createModal').style.display='block'">CREATE ONE</button-->  
-          
-          <div class="list-group">
-            <!--a href="#" class="list-group-item" id="travelexample">
-              <div class="media col-md-3">
-                <figure class="pull-left">
-                  <img class="media-object img-rounded img-responsive"  src="https://media-cdn.tripadvisor.com/media/photo-s/06/5b/f4/fb/view-from-the-top.jpg" alt="placehold.it/350x250" >
-                </figure>
-              </div>
-              <div class="col-md-6">
-                <h4 class="list-group-item-heading"> Honolulu 2018 </h4>
-                <p class="list-group-item-text"> Honolulu means "sheltered harbor" or "calm port". The old name is Kou, a district roughly encompassing the area from Nuʻuanu Avenue to Alakea Street and from Hotel Street to Queen Street which is the heart of the present downtown district. The city has been the capital of the Hawaiian Islands since 1845 and gained historical recognition following the attack on Pearl Harbor by Japan near the city on December 7, 1941.
-                </p>
-                <div class="stars">
-                  <p>Status: <small><b>OPEN</b></small> with <b>3</b> contributors</p>
-                </div>  
-              </div>
-              <div class="col-md-3 text-center">
-                <h2> 5 / 8<small> ether </small></h2>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Fund now!</button>
-                <button type="button" class="btn btn-danger btn-lg btn-block">Close</button>
-                <div class="stars">
-                  <p> Expiration <small> : </small> 18 June 2018 </p>  
-                </div>   
-              </div>
-            </a-->
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </body>
   </html>
+
+<!--a href="#" class="list-group-item" id="travelexample">
+<div class="media col-md-3">
+<figure class="pull-left">
+<img class="media-object img-rounded img-responsive"  src="https://media-cdn.tripadvisor.com/media/photo-s/06/5b/f4/fb/view-from-the-top.jpg" alt="placehold.it/350x250" >
+</figure>
+</div>
+<div class="col-md-6">
+<h4 class="list-group-item-heading"> Honolulu 2018 </h4>
+<p class="list-group-item-text"> Honolulu means "sheltered harbor" or "calm port". The old name is Kou, a district roughly encompassing the area from Nuʻuanu Avenue to Alakea Street and from Hotel Street to Queen Street which is the heart of the present downtown district. The city has been the capital of the Hawaiian Islands since 1845 and gained historical recognition following the attack on Pearl Harbor by Japan near the city on December 7, 1941.
+</p>
+<div class="stars">
+<p>Status: <small><b>OPEN</b></small> with <b>3</b> contributors</p>
+</div>  
+</div>
+<div class="col-md-3 text-center">
+<h2> 5 / 8<small> ether </small></h2>
+<button type="button" class="btn btn-primary btn-lg btn-block">Fund now!</button>
+<button type="button" class="btn btn-danger btn-lg btn-block">Close</button>
+<div class="stars">
+<p> Expiration <small> : </small> 18 June 2018 </p>  
+</div>   
+</div>
+</a-->
