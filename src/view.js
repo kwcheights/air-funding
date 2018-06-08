@@ -60,7 +60,7 @@ function renderTravelList(travelList){
     } else {contWord='contributor'}
 
     $('.list-group').prepend(
-      `<a href="#" class="list-group-item list-group-item-action" id="travel`+travelList[t].InArrayIndex+`">
+      `<a href="#" class="list-group-item" id="travel`+travelList[t].InArrayIndex+`">
                 <div class="media col-md-3">
                     <figure class="pull-left">
                         <img class="media-object img-rounded img-responsive" src="`+/*"https://media-cdn.tripadvisor.com/media/photo-s/06/5b/f4/fb/view-from-the-top.jpg"+*/travelList[t].img+`" heigth="250" width="350">
