@@ -34,12 +34,11 @@
 
     <div id="createModal" class="modal">
       <div class="modal-content animate">
-        <!--span onclick="document.getElementById('createModal').style.display='none'" class="close" title="Close Modal">&times;</span-->
-        <div class="container">
-          <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('createModal').style.display='none'">&times;</button>
+        <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('createModal').style.display='none'">&times;</button>
+        <div class="container-modal">
           <h4 class="text-center">STORE YOUR FUND ON THE BLOCKCHAIN</h4>
         </div>
-        <div class="container">
+        <div class="container-modal">
           <label for="title"><i class="fa fa-bullhorn"></i> Title</label>
           <input type="text" id="title" name="title" placeholder="Insert a title for your travel">
           <label for="goal"><i class="fa fa-flag-checkered"></i> Goal</label>
@@ -55,7 +54,7 @@
           <label for="img"><i class="fa fa-image"></i> Image</label>
           <input type="file" id="img" name="img" placeholder="Your email here">
         </div>
-        <div class="container">
+        <div class="container-modal">
           <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="create_btn">Create!</button>
         </div>
       </div>
@@ -63,16 +62,15 @@
 
     <div id="fundModal" class="modal">
       <div class="modal-content animate">
-        <!--span onclick="document.getElementById('createModal').style.display='none'" class="close" title="Close Modal">&times;</span-->
-        <div class="container">
-          <button id="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('fundModal').style.display='none'">&times;</button>
+        <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('fundModal').style.display='none'">&times;</button>
+        <div class="container-modal">       
           <h4 class="text-center">DON'T BE STINGY!</h4>
         </div>
-        <div class="container">
+        <div class="container-modal">
           <label for="fundAmount"><i class="fab fa-ethereum"></i> Amount</label>
           <input type="text" id="fundAmount" name="fundAmount" placeholder="Insert your amount in Ether">
         </div>
-        <div class="container">
+        <div class="container-modal">
           <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="send_btn">Send</button>
         </div>
       </div>

@@ -67,8 +67,8 @@ function renderTravelList(travelList){
                     </figure>
                 </div>
                 <div class="col-md-6">
-                    <h4 class="list-group-item-heading">`+travelList[t].title+`</h4>
-                    <p class="list-group-item-text"> `+travelList[t].description+` 
+                    <h4 class="title">`+travelList[t].title+`</h4>
+                    <p class="description"> `+travelList[t].description+` 
                     </p>
                     <div class="stars">
                       <p><b>`+travelList[t].numberOfContributors+`</b> `+contWord+`</p>

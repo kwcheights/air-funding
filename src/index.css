@@ -39,7 +39,7 @@ body {
     background-color: #fefefe;
     margin: 5px auto; /* 15% from the top and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 400px;
 }
 
 /* The Close Button */
@@ -272,10 +272,16 @@ a.list-group-item.active small {
   border: none;
   color: #cc0404;
   background: transparent;
-  font-size: 40px;
+  font-size: 20px;
 }
 
-.modaldiv {
-  max-height: 300px;
-  max-width: 300px;
+.title {
+  text-transform: uppercase;
+}
+
+.container-modal {
+  background-color: #fcfcfc;
+  padding: 5px 20px 15px 20px;
+  border-radius: 3px;
+  max-width: 400px;
 }
