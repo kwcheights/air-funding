@@ -67,7 +67,8 @@
           </div>
           <div class="container-modal">
             <label for="fundAmount"><i class="fab fa-ethereum"></i> Amount</label>
-            <input type="text" id="fundAmount" name="fundAmount" placeholder="Insert your amount in Ether">
+            <input type="text" id="fundAmount" name="fundAmount" placeholder="Insert your amount in Finney units">
+            <label id="converter"></label>
           </div>
           <div class="container-modal">
             <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="send_btn">Send</button>
@@ -79,6 +80,7 @@
         <div> 
           <div> 
             <div class="col-md-12">
+              <a target="_blank" href="https://www.cryptocompare.com/coins/eth/overview/EUR" class="fh5co-menu-btn js-fh5co-menu-btn" id="eth-price"><i class="fas fa-plus-square"></i></a>
               <a href="#" class="fh5co-menu-btn js-fh5co-menu-btn" id="openCreateModal" onclick="document.getElementById('createModal').style.display='block'">create travel <i class="fas fa-plus-square"></i></a>    
             </div>
             <div class="list-group">

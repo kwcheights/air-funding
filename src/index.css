@@ -226,6 +226,29 @@ span.price {
   color: #003866;
 }
 
+#eth-price {
+  font-weight: bold;
+  display: block;
+  font-size: 15px;
+  letter-spacing: 1px;
+  float: left;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  font-family: "Roboto", sans-serif;
+  color: #005091;
+}
+#eth-price i {
+  font-size: 20px;
+  margin-bottom: 10px;
+  float: right;
+  margin-left: 10px;
+}
+#eth-price:hover, #eth-price:focus, #eth-price:active {
+  outline: none;
+  text-decoration: none;
+  color: #003866;
+}
+
 
 a.list-group-item {
   margin: 10px 10px 20px 10px;
@@ -297,4 +320,26 @@ a.list-group-item.active small {
   padding: 5px 20px 15px 20px;
   border-radius: 3px;
   max-width: 400px;
+}
+
+.eur {
+  margin-top: 4px;
+}
+
+.finney {
+  margin: 2px 2px 2px 2px;
+}
+
+.media-object {
+  margin-top: 4%;
+
+  float: center;
+}
+
+.text-center {
+  margin-top: 1%;
+}
+
+.converter {
+  margin: 0px 0px 0px 0px;
 }

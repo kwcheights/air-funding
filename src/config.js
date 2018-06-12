@@ -374,6 +374,7 @@ const ipfs = window.IpfsApi('localhost', 5002, {protocol: 'http'});
 const address = '0xf12b5dd4ead5f743c6baa640b0216200e89b60da';
 var instance = web3.eth.contract(abi);
 var air = instance.at(address);
+var ethPrice;
 
 web3.eth.filter('latest', function(error, result){
   if (!error) {

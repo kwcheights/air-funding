@@ -3,7 +3,7 @@
 $(document).ready(function() {
   getTravelList().then(renderTravelList);
   if (typeof web3 === 'undefined') {
-    alert('You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this example');
+    alert('You need MetaMask browser plugin to run this example');
   } else console.log("MetaMask detected!");
 
   $("#create_btn").click(async function (){
@@ -22,6 +22,19 @@ $(document).ready(function() {
     await fundTravel(toFund, document.getElementById('fundAmount').value);
     document.getElementById('fundModal').style.display='none';
     $('#fundModal').find('input').val('');
+  });
+
+  $.get("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR", function(data, status){
+    if(status=="success"){
+      ethPrice = data["EUR"]
+      console.log("Ether price:" + ethPrice);
+      document.getElementById("eth-price").innerHTML= `1 <small>finney</small> ≈  <span style="color: #1ac600">` + Number((ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
+    }
+    else alert("Eth price not available")
+  });
+
+  $( "#fundAmount" ).change(function() {
+  document.getElementById('converter').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('fundAmount').value*(ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
   });
 });
 
@@ -75,7 +88,8 @@ function renderTravelList(travelList){
                     </div>  
                 </div>
                 <div class="col-md-3 text-center">
-                    <h2> `+web3.fromWei(travelList[t].balance,'ether')+` / `+web3.fromWei(travelList[t].goal,'ether')+`<small> ether </small></h2>`
+                    <h4 class="finney">`+web3.fromWei(travelList[t].balance,'finney')+`<small> / </small>`+web3.fromWei(travelList[t].goal,'finney')+`<small> finney </small></h4>
+                    <h6 class="eur">(<span style="color: #1ac600">`+Number(web3.fromWei(travelList[t].goal,'finney')*(ethPrice/1000)).toFixed(2)+`</span> <small>EUR</small>)</h6>`
                     +fundButton+closeButton+
                     `<div class="stars">`
                       +expires+ 
