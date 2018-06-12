@@ -370,15 +370,10 @@ const abi = [
   }
 ]
 
-const ipfs = window.IpfsApi('localhost', 5002, {protocol: 'http'});
-const address = '0xf12b5dd4ead5f743c6baa640b0216200e89b60da';
-var instance = web3.eth.contract(abi);
-var air = instance.at(address);
-var ethPrice;
+const config = {}
+config.ipfsServer = "192.168.40.118"
+config.ipfsPort = 5002
+config.ipfsProtocol = 'http'
+config.contractAddress = '0xf12b5dd4ead5f743c6baa640b0216200e89b60da'
 
-web3.eth.filter('latest', function(error, result){
-  if (!error) {
-    console.log('> watched');
-    getTravelList().then(list => renderTravelList(list))
-  } else console.log(error);
-});
+var ethPrice;

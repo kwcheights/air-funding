@@ -1,10 +1,22 @@
   var toFund;
+  var ethPrice;
+  var ipfs;
+  var instance;
+  var air;
 
 $(document).ready(function() {
+
+  ipfs = window.IpfsApi(config.ipfsServer, config.ipfsPort, config.ipfsProtocol);
+  instance = web3.eth.contract(abi);
+  air = instance.at(config.contractAddress);
+  web3.eth.filter('latest', function(error, result){
+    if (!error) {
+      console.log('> watched');
+     getTravelList().then(list => renderTravelList(list))
+    } else console.log(error);
+  });
   getTravelList().then(renderTravelList);
-  if (typeof web3 === 'undefined') {
-    alert('You need MetaMask browser plugin to run this example');
-  } else console.log("MetaMask detected!");
+
 
   $("#create_btn").click(async function (){
     await storeTravel(sha3_256(document.getElementById('dest').value + web3.eth.coinbase),
