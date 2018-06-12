@@ -1,13 +1,14 @@
-  var toFund;
-  var ethPrice;
-  var ipfs;
-  var instance;
-  var air;
+var toFund;
+var ethPrice;
+var ipfs;
+var instance;
+var air;
+var ethPrice;
 
 $(document).ready(function() {
 
   ipfs = window.IpfsApi(config.ipfsServer, config.ipfsPort, config.ipfsProtocol);
-  instance = web3.eth.contract(abi);
+  instance = web3.eth.contract(config.abi);
   air = instance.at(config.contractAddress);
   web3.eth.filter('latest', function(error, result){
     if (!error) {

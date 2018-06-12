@@ -23,8 +23,9 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <a class="navbar-brand" href="index.html">airfunding</a>
-              <h4 id="subtitle" class="text-center">decentralized funding platform</h4> 
+              <a href="#" class="fh5co-menu-btn js-fh5co-menu-btn" id="openInfoModal" onclick="document.getElementById('infoModal').style.display='block'"><i class="fas fa-question-circle fa-xs"></i></a>
+              <a class="navbar-brand">airfunding</a>
+              <h4 id="subtitle" class="text-center">decentralized funding platform</h4>
             </div>
           </div>
         </div>
@@ -84,18 +85,36 @@
               <a href="#" class="fh5co-menu-btn js-fh5co-menu-btn" id="openCreateModal" onclick="document.getElementById('createModal').style.display='block'">create travel <i class="fas fa-plus-square"></i></a>    
             </div>
             <div class="list-group">
-
             </div>
           </div>
         </div>
       </div>
-          <footer class="container-fluid text-center bg-lightgray">
 
-        <div class="copyrights" style="margin-top:25px;">
-            <p>AIRFUNDING is an interactive demo of a smart contract deployed on a custom development ethereum network. It stores images on IPFS (running offline) and it provides a web interface through Web3.</p>
-            <p><a href="https://github.com/kwcheights/air-funding" target="_blank">GitHub <i class="fab fa-github" aria-hidden="true"></i> </a></p>
+      <div id="infoModal" class="modal">
+        <div class="modal-content animate">
+          <button class="xclose" aria-label="Close Account Info Modal Box" onclick="document.getElementById('infoModal').style.display='none'">&times;</button>
+          <div class="container-modal">       
+            <h4 class="text-center">HELP</h4>
+          </div>
+          <div class="container-modal">
+            <p><b>1. I can't create nor fund travels. Nothing happens when i press "fund now" or "create" buttons.</b></p>
+            <p>Airfunding needs MetaMask plugin to execute transactions, verify your identity and interact with the ethereum blockchain. You need MetaMask plugin installed.</p>
+            <p><b>2. What is Finney?</b></p>
+            <p>Finney is the currency unit used on this platform. A finney equals to 1/1000 ether and its value is displayed in EUR at the high left corner of this page. The value of Ethereum's currency may change several times a day. Manage your money carefully.</p>
+            <p><b>3. The list of travels is empty</b></p>
+            <p>An empty travel list means there are no travels stored in the Airfunding contract. You need to create one by pressing the "create travel" button.</p>
+          </div>
+          <div class="container-modal">
+          </div>
         </div>
-    </footer>
+      </div>
+
+      <footer class="container-fluid text-center bg-lightgray">
+        <div class="copyrights" style="margin-top:25px;">
+          <p>AIRFUNDING is an interactive demo of a smart contract deployed on a custom development ethereum network. It stores images on IPFS (running offline) and it provides a web interface through Web3.</p>
+          <p><a href="https://github.com/kwcheights/air-funding" target="_blank">GitHub <i class="fab fa-github" aria-hidden="true"></i> </a></p>
+        </div>
+      </footer>
     </div>
   </body>
   </html>

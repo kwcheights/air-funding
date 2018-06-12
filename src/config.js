@@ -1,4 +1,9 @@
-const abi = [
+const config = {}
+config.ipfsServer = "192.168.40.118"
+config.ipfsPort = 5002
+config.ipfsProtocol = 'http'
+config.contractAddress = '0xf12b5dd4ead5f743c6baa640b0216200e89b60da'
+config.abi = abi = [
   {
     "constant": true,
     "inputs": [
@@ -369,11 +374,3 @@ const abi = [
     "type": "constructor"
   }
 ]
-
-const config = {}
-config.ipfsServer = "192.168.40.118"
-config.ipfsPort = 5002
-config.ipfsProtocol = 'http'
-config.contractAddress = '0xf12b5dd4ead5f743c6baa640b0216200e89b60da'
-
-var ethPrice;

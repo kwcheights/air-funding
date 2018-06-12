@@ -349,3 +349,23 @@ a.list-group-item.active small {
     margin-top: 10%;
     max-width: 30%
 }
+
+#openInfoModal {
+  font-weight: bold;
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  float: left;
+  font-family: "Roboto", sans-serif;
+  color: #005091;
+}
+#openInfoModal i {
+  font-size: 20px;
+  float: right;
+  margin-left: 10px;
+}
+#openInfoModal:hover, #openInfoModal:focus, #openInfoModal:active {
+  outline: none;
+  text-decoration: none;
+  color: #003866;
+}
