@@ -4,8 +4,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.42857;
-  color: #f5f6f7;
-
+  background: #f5f6f7;
 }
 
 html {
@@ -342,4 +341,10 @@ a.list-group-item.active small {
 
 .converter-fund {
   margin: 0px 0px 0px 0px;
+}
+
+.container-fluid
+{
+    background-color: #f5f6f7;
+    margin-top: 20%;
 }
