@@ -9,7 +9,7 @@ $(document).ready(function() {
   $("#create_btn").click(async function (){
     await storeTravel(sha3_256(document.getElementById('dest').value + web3.eth.coinbase),
       document.getElementById('title').value,
-      web3.toWei(document.getElementById('goal').value, "ether"),
+      web3.toWei(document.getElementById('goal').value, "finney"),
       document.getElementById('dest').value,
       document.getElementById('desc').value,
       moment(document.getElementById('exp').value).format("D MMMM YYYY"),
@@ -34,7 +34,11 @@ $(document).ready(function() {
   });
 
   $( "#fundAmount" ).change(function() {
-  document.getElementById('converter').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('fundAmount').value*(ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
+  document.getElementById('converter-fund').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('fundAmount').value*(ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
+  });
+
+  $( "#goal" ).change(function() {
+  document.getElementById('converter-create').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('goal').value*(ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
   });
 });
 

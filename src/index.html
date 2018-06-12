@@ -40,8 +40,8 @@
           <div class="container-modal">
             <label for="title"><i class="fa fa-bullhorn"></i> Title</label>
             <input type="text" id="title" name="title" placeholder="Insert a title for your travel">
-            <label for="goal"><i class="fa fa-flag-checkered"></i> Goal</label>
-            <input type="text" id="goal" name="goal" placeholder="Define a goal in ether">
+            <label for="goal"><i class="fa fa-flag-checkered"></i> Goal</label> <label id="converter-create"></label>
+            <input type="text" id="goal" name="goal" placeholder="Define a goal in finney units">
             <label for="dest"><i class="fa fa-plane"></i> Destination</label>
             <input type="text" id="dest" name="dest" placeholder="Choose a destination">
             <label for="exp"><i class="fas fa-calendar-alt"></i> Expiration</label>
@@ -66,9 +66,8 @@
             <h4 class="text-center">DON'T BE STINGY!</h4>
           </div>
           <div class="container-modal">
-            <label for="fundAmount"><i class="fab fa-ethereum"></i> Amount</label>
+            <label for="fundAmount"><i class="fab fa-ethereum"></i> Amount</label> <label id="converter-fund"></label>
             <input type="text" id="fundAmount" name="fundAmount" placeholder="Insert your amount in Finney units">
-            <label id="converter"></label>
           </div>
           <div class="container-modal">
             <button type="button" title="primary" class="btn btn-primary btn-lg btn-block" id="send_btn">Send</button>
