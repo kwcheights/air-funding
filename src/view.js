@@ -47,11 +47,11 @@ $(document).ready(function() {
   });
 
   $( "#fundAmount" ).on('change keyup paste', function() {
-  document.getElementById('converter-fund').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('fundAmount').value*(ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
+  document.getElementById('converter-fund').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('fundAmount').value*(ethPrice/1000)).toFixed(2) + `</span> <small>EUR</small>`; 
   });
 
   $( "#goal" ).on('change keyup paste', function() {
-  document.getElementById('converter-create').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('goal').value*(ethPrice/1000).toFixed(2)) + `</span> <small>EUR</small>`; 
+  document.getElementById('converter-create').innerHTML = `<small>≈</small>  <span style="color: #1ac600">` + Number(document.getElementById('goal').value*(ethPrice/1000)).toFixed(2) + `</span> <small>EUR</small>`; 
   });
 });
 
